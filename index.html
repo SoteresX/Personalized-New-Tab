@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <title>RealTime Clock</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <div id="container">
+
+        <div id="topRow">
+
+            <div class="dayDetailsContainer">
+                <h1 id="dateAndDay"></h1>
+                <h2 id="monthAndDay"></h2>
+                <p id="dayNums"></p>
+
+                <!-- Clock Numbers -->
+                <div id="clock"></div>
+                    <button id="twentyFourHour">24-Hour System</button>
+                    <button id="twelveHour">12-Hour System</button>
+                
+                </div>
+            
+            <div id="searchBar">
+                <form role="search" id="searchForm">
+                    <input type="text" name="searchInput" id="searchInput" placeholder="Search...">
+                    <label for="searchButton"><img src="./images/icons/magnifyingGlass.svg" height="30px" width="30px"/></label>
+                    <input type="submit" id="searchButton" hidden>
+                </form>
+            </div>
+            
+            <div id="iconContainer">
+
+                <!-- Right Sidebar With Icons -->
+                <div id="iconUrls">
+
+                    <!-- Notion Calendar -->
+                    <a href="https://calendar.notion.so/event/create" target="_blank" id="notionCalendar"><img src="./images/appIcons/NotionCalendarIcon.png" height="50px" width="50px"/></a>
+                    <!-- Udemy -->
+                    <a href="https://www.udemy.com/home/my-courses/learning/" target="_blank" id="udemy"><img src="./images/appIcons/UdemyIcon.webp" height="50px" width="50px"/></a>
+                    <!-- Youtube -->
+                    <a href="https://www.youtube.com/" target="_blank" id="youtube"><img src="./images/appIcons/YoutubeIcon.png" height="50px" width="50px"/></a>
+                </div>    
+                <!-- Pencil Icon -->
+                <img src="./images/icons/pencilWhite.png" height="50px" width="50px" id="pencilIcon"/> 
+
+            </div>
+
+        </div>
+
+        <div id="optionsMenu">
+            <div id="optionButtons">
+                <button id="wallpapersButton">Wallpaper</button>
+            </div>
+            <div id="wallpaperOptions">
+                <div id="autumnWallpaper">
+                    <div class="innerBox">
+                        <p class="text">Autumn Wallpaper</p>
+                        <button id="buttonAutumn">Apply</button>
+                    </div>
+                </div>
+                <div id="officeWallpaper">
+                    <div class="innerBox">
+                        <p class="text">Office Wallpaper</p>
+                        <button id="buttonOffice">Apply</button>
+                    </div>
+                </div>
+                <div id="bridgeWallpaper">
+                    <div class="innerBox">
+                        <p class="text">Bridge Wallpaper</p>
+                        <button id="buttonBridge">Apply</button>
+                    </div>
+                </div>
+                <div id="townWallpaper">
+                    <div class="innerBox">
+                        <p class="text">Town Wallpaper</p>
+                        <button id="buttonTown">Apply</button>
+                    </div>
+                </div>
+                <div id="minecraftTownWallpaper">
+                    <div class="innerBox">
+                        <p class="text">Minecraft Town Wallpaper</p>
+                        <button id="buttonMinecraftTown">Apply</button>
+                    </div>
+                </div>
+                
+                <label for="uploadButton">
+                    <div id="uploadImage">
+                        <p class="text">Upload Your Own</p>
+                        <input type="file" id="uploadButton" hidden>
+                        <img src="./images/icons/addFolder.png" height="50px" width="50px"/>
+                    </div>
+                </label>
+                
+            </div>
+        </div>
+
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
