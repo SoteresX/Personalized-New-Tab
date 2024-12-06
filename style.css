@@ -250,6 +250,13 @@ body{
     gap: 10px
 }
 
+#clockOptions{
+    display: none;
+    margin-top: 20px;
+    margin-left: 20px;
+    height: 150px;
+    gap: 20px;
+}
 
 
 /* Fonts That Are Assigned And Made */

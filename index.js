@@ -207,6 +207,23 @@ $("button").on("click", function(event){
         case "buttonMinecraftTown":
             $("body").css("background-image", "url('./images/wallpapers/minecraftTownWallpaper.jpg')");
             break;
-    
+        case "clockButton":
+            var setting = "clock";
+            changeSettingsMenu(setting);
+            break;  
+        case "wallpapersButton":
+            var setting = "wallpapers";
+            changeSettingsMenu(setting);
+            break;
     }
 })
+
+function changeSettingsMenu(setting){
+    if(setting == "clock"){
+        $("#wallpaperOptions").css("display", "none");
+        $("#clockOptions").css("display", "flex");
+    } else if(setting == "wallpapers"){
+        $("#wallpaperOptions").css("display", "flex");
+        $("#clockOptions").css("display", "none");
+    }
+}
