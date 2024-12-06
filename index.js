@@ -120,9 +120,9 @@ $("#pencilIcon").on("click", function(){
     if(optionsClicked == false){
         optionsClicked = true;
         // Show Options Menu
-        $("#optionsMenu").css("display", "flex");
+        $("#optionsMenu_container").css("display", "flex");
         // optionsMenu animation
-        $("#optionsMenu").animate({top: '720px'} , 400);
+        $("#optionsMenu_container").animate({top: '720px'} , 400);
         // topRow animation
         $("#topRow").animate({height: '720px'}, 400);
         document.getElementById("topRow").style.height = '710px';
@@ -187,41 +187,26 @@ function wallpaperExitAnimation(wallpaper, innerBox){
     $("#" + wallpaper + " button").animate({opacity: '0'}, 200);
 }
 
-$("#buttonAutumn").on("click", function(event){
-    $("body").css("background-image", "url('./images/wallpapers/autumnWallpaper.jpg')");
-})
 
-$("#buttonOffice").on("click", function(event){
-    $("body").css("background-image", "url('./images/wallpapers/officeWallpaper.jpg')");
-})
-
-$("#buttonBridge").on("click", function(event){
-    $("body").css("background-image", "url('./images/wallpapers/bridgeWallpaper.jpg')");
-})
-
-$("#buttonTown").on("click", function(event){
-    $("body").css("background-image", "url('./images/wallpapers/townWallpaper.jpg')");
-})
-
-$("#buttonMinecraftTown").on("click", function(event){
-    $("body").css("background-image", "url('./images/wallpapers/minecraftTownWallpaper.jpg')");
-})
-
-$("#searchForm").on("submit", function(event) {
-    // Prevent default form submission (page refresh)
-    event.preventDefault();
+$("button").on("click", function(event){
+    var buttonPressed = event.currentTarget.id;
+    console.log(buttonPressed);
+    switch(buttonPressed){
+        case "buttonAutumn":
+            $("body").css("background-image", "url('./images/wallpapers/autumnWallpaper.jpg')");
+            break;
+        case "buttonOffice":
+            $("body").css("background-image", "url('./images/wallpapers/officeWallpaper.jpg')");
+            break;
+        case "buttonBridge":
+            $("body").css("background-image", "url('./images/wallpapers/bridgeWallpaper.jpg')");
+            break;
+        case "buttonTown":
+            $("body").css("background-image", "url('./images/wallpapers/townWallpaper.jpg')");
+            break;
+        case "buttonMinecraftTown":
+            $("body").css("background-image", "url('./images/wallpapers/minecraftTownWallpaper.jpg')");
+            break;
     
-    // Get the value from the input field
-    var inputValue = $("#searchInput").val();
-    
-    // Log the input value to the console
-    console.log("Input Value:", inputValue);
-    setTimeout(function(){$("#searchInput").val('')}, 50);
-});
-
-// Trigger form submission when the label is clicked
-$("label[for='searchButton']").on("click", function() {
-    // Directly trigger the form submission
-    $("#searchForm").submit();
-});
-
+    }
+})

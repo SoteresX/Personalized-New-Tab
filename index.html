@@ -13,17 +13,19 @@
 
         <div id="topRow">
 
-            <div class="dayDetailsContainer">
+            <div class="dayDetails_container">
                 <h1 id="dateAndDay"></h1>
+                
+                <!-- Clock Numbers -->
+
+                <div id="clock"></div>
+
+                <button id="twentyFourHour">24-Hour System</button>
+                <button id="twelveHour">12-Hour System</button>
                 <h2 id="monthAndDay"></h2>
                 <p id="dayNums"></p>
 
-                <!-- Clock Numbers -->
-                <div id="clock"></div>
-                    <button id="twentyFourHour">24-Hour System</button>
-                    <button id="twelveHour">12-Hour System</button>
-                
-                </div>
+            </div>
             
             <div id="searchBar">
                 <form role="search" id="searchForm">
@@ -52,9 +54,10 @@
 
         </div>
 
-        <div id="optionsMenu">
+        <div id="optionsMenu_container">
             <div id="optionButtons">
-                <button id="wallpapersButton">Wallpaper</button>
+                <button id="wallpapersButton" class="buttonOption">Wallpaper</button>
+                <button id="clockOptions" class="buttonOption">Clock</button>
             </div>
             <div id="wallpaperOptions">
                 <div id="autumnWallpaper">
