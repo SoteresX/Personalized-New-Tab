@@ -19,11 +19,14 @@
                 <!-- Clock Numbers -->
 
                 <div id="clock"></div>
-                <div id="pomodoroContainer">
-                    <button>Pomodoro</button>
-                    <button>Short Break</button>
-                    <button>Long Break</button>
-                    <p>25:00</p>
+                <div id="pomodoro_container">
+                    <div id="pomodoroCycle_container">
+                        <button>Pomodoro</button>
+                        <button>Short Break</button>
+                        <button>Long Break</button>
+                    </div>
+                    <p id="pomodoroTimer">25:00</p>
+                    <button>Start</button>
 
                 </div>
                 
@@ -109,7 +112,8 @@
             <div id="clockOptions">
                 <button id="twentyFourHour">24-Hour System</button>
                 <button id="twelveHour">12-Hour System</button>
-                <button id="pomodoroButton">Pomodoro Timer</button>
+                <label for="pomodoroCheckbox" id="pomodoroLabel">
+                <input type="checkbox" id="pomodoroCheckbox"/>Pomodoro Timer</label>
             </div>
         </div>
 

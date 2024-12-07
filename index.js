@@ -105,14 +105,6 @@ function hourSystemChange(hours){
     return hours;
 }
 
-startTime();
-
-var hourSys = "12";
-var optionsClicked = false;
-
-$("#twentyFourHour").on("click", function(){ hourSys = "24"; console.log(hourSys);});
-$("#twelveHour").on("click", function(){ hourSys = "12"; console.log(hourSys);});
-
 // Wallpaper Customization Related
 
 $("#pencilIcon").on("click", function(){
@@ -134,22 +126,18 @@ $("#pencilIcon").on("click", function(){
 
         optionsClicked = false;
         // optionsMenu Animation
-        $("#optionsMenu").animate({top: '900px'}, 400);
+        $("#optionsMenu_container").animate({top: '900px'}, 400);
         // topRow Animation
         $("#topRow").animate({height: '900px'}, 400);
         // Wait for a bit to disappear
-        setTimeout(function(){$("#optionsMenu").css("display", "none")}, 400);
+        setTimeout(function(){$("#optionsMenu_container").css("display", "none")}, 400);
         // Change pencilIcon back to pencilWhite
         var image = document.getElementById("pencilIcon");
         image.src = "./images/icons/pencilWhite.png"
     }
-
-
 });
 
 // On Mouse Enter And Leave Run Function for the Animations
-
-$("#autumnWallpaper, #officeWallpaper, #bridgeWallpaper, #townWallpaper, #minecraftTownWallpaper").on("mouseenter mouseleave", handleWallpaperEvent);
 
 function handleWallpaperEvent(event){
 
@@ -187,8 +175,7 @@ function wallpaperExitAnimation(wallpaper, innerBox){
     $("#" + wallpaper + " button").animate({opacity: '0'}, 200);
 }
 
-
-$("button").on("click", function(event){
+$("button, input").on("click", function(event){
     var buttonPressed = event.currentTarget.id;
     console.log(buttonPressed);
     switch(buttonPressed){
@@ -215,6 +202,19 @@ $("button").on("click", function(event){
             var setting = "wallpapers";
             changeSettingsMenu(setting);
             break;
+        case "pomodoroCheckbox":
+            var checked = $("#pomodoroCheckbox").prop("checked")
+            if(checked == true){
+
+                $("#pomodoro_container").css("display", "flex");
+                $("#pomodoro_container").animate({height: "200px", opacity: '1'}, 200);
+                $("#clock").animate({fontSize: '60px'}, 200);
+            } else{
+                $("#pomodoro_container").animate({height: "0px", opacity: '0'}, 200);
+                setTimeout(function(){$("#pomodoro_container").css("display", "none")}, 160);
+                $("#clock").animate({fontSize: '90px'}, 200);
+            }
+            break;
     }
 })
 
@@ -227,3 +227,12 @@ function changeSettingsMenu(setting){
         $("#clockOptions").css("display", "none");
     }
 }
+
+startTime();
+
+var hourSys = "12";
+var optionsClicked = false;
+
+$("#twentyFourHour").on("click", function(){ hourSys = "24"; console.log(hourSys);});
+$("#twelveHour").on("click", function(){ hourSys = "12"; console.log(hourSys);});
+$("#autumnWallpaper, #officeWallpaper, #bridgeWallpaper, #townWallpaper, #minecraftTownWallpaper").on("mouseenter mouseleave", handleWallpaperEvent);

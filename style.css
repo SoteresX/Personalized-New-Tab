@@ -22,6 +22,28 @@ body{
     
 }
 
+#pomodoro_container{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 0px;
+    opacity: 0;
+}
+
+#pomodoro_container button{
+    border-radius: 30px;
+    width: 100px;
+    padding: 10px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+}
+
+#pomodoroCycle_container{
+    display: flex;
+    gap: 20px;
+}
 
 #optionsMenu_container{
     height: 200px;
@@ -71,12 +93,22 @@ body{
 }
 
 /* div Exact Time Shown Real Time */
-#clock{
+#clock, #pomodoroTimer{
     font-family: proRacing;
     font-size: 90px;
     margin-bottom: 40px;
+    margin-top: 30px;
+    margin-bottom: 20px;
     color: white;
     text-shadow: 2px 7px black;
+}
+
+#pomodoroLabel{
+    user-select: none;
+}
+
+#pomodoroCheckbox{
+    margin-right: 10px;
 }
 
 #iconContainer{
@@ -257,6 +289,8 @@ body{
     height: 150px;
     gap: 20px;
 }
+
+
 
 
 /* Fonts That Are Assigned And Made */
