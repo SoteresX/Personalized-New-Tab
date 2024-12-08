@@ -20,14 +20,19 @@
 
                 <div id="clock"></div>
                 <div id="pomodoro_container">
-                    <div id="pomodoroCycle_container">
+                    <div class="flex_container">
                         <button>Pomodoro</button>
                         <button>Short Break</button>
                         <button>Long Break</button>
                     </div>
                     <p id="pomodoroTimer">25:00</p>
-                    <button>Start</button>
-
+                    <div class="flex_container">
+                        <button id="startPomodoroTimerButton">Start</button>
+                        <button id="resumePomodoroTimerButton">Resume</button>
+                        <button id="pausePomodoroTimerButton">Pause</button>
+                        <button id="endPomodoroTimerButton">End</button>
+                    </div>
+                
                 </div>
                 
                 <h2 id="monthAndDay"></h2>
@@ -110,9 +115,10 @@
                 
             </div>
             <div id="clockOptions">
-                <button id="twentyFourHour">24-Hour System</button>
-                <button id="twelveHour">12-Hour System</button>
-                <label for="pomodoroCheckbox" id="pomodoroLabel">
+                <label for="hourSystemCheckbox">
+                    <input type="checkbox" id="hourSystemCheckbox"/>12-Hour System
+                </label>
+                <label for="pomodoroCheckbox">
                 <input type="checkbox" id="pomodoroCheckbox"/>Pomodoro Timer</label>
             </div>
         </div>

@@ -215,6 +215,72 @@ $("button, input").on("click", function(event){
                 $("#clock").animate({fontSize: '90px'}, 200);
             }
             break;
+        case "hourSystemCheckbox":
+            var checked = $("#hourSystemCheckbox").prop("checked")
+            if(checked == true){
+                hourSys = "24";
+            } else {
+                hourSys = "12"
+            }
+            break;
+        
+        case "startPomodoroTimerButton":
+            var minutes = 0;
+            var seconds = 30;
+            pomodoroEnd = false;
+            pomodoroPaused = false; 
+            $("#startPomodoroTimerButton").css("display", "none");
+            $("#pausePomodoroTimerButton, #endPomodoroTimerButton").css("display", 'inline-block');
+            var pomodoroTimer = setInterval(function(){
+                console.log(minutes, seconds);
+                console.log(globalPomodoroMinutes);
+                if(pomodoroEnd == false){
+                    if(pomodoroPaused == false){
+                        if(seconds == 0 && minutes == 0){
+
+                            $("#pausePomodoroTimerButton, #resumePomodoroTimerButton, #endPomodoroTimerButton").css("display", "none");
+                            $("#startPomodoroTimerButton").css("display", "inline-block");
+                            $("#pomodoroTimer").html(globalPomodoroMinutes + ":" + "00");
+                            clearInterval(pomodoroTimer);
+
+                        } else if(seconds == 0){
+                            minutes -= 1;
+                            seconds = 59;
+                            $("#pomodoroTimer").html(minutes + ":" + seconds);
+                        } else{
+                            seconds -=1; 
+                            $("#pomodoroTimer").html(minutes + ":" + seconds);
+                        }
+                        
+                    } 
+                } else{
+                    
+                    $("#pausePomodoroTimerButton, #resumePomodoroTimerButton, #endPomodoroTimerButton").css("display", "none");
+                    $("#startPomodoroTimerButton").css("display", "inline-block");
+                    $("#pomodoroTimer").html(globalPomodoroMinutes + ":" + "00");
+                    clearInterval(pomodoroTimer);
+                }
+            }, 1000);
+                
+            break;
+        case "pausePomodoroTimerButton":
+            pomodoroPaused = true;
+            $("#pausePomodoroTimerButton").css("display", 'none');
+            $("#resumePomodoroTimerButton").css("display", "inline-block");
+            break;
+        case "resumePomodoroTimerButton":
+            pomodoroPaused = false;
+            $("#resumePomodoroTimerButton").css("display", "none");
+            $("#pausePomodoroTimerButton").css("display", "inline-block");
+            break;
+        case "endPomodoroTimerButton":
+            $("#pausePomodoroTimerButton, #resumePomodoroTimerButton, #endPomodoroTimerButton").css("display", "none");
+            $("#startPomodoroTimerButton").css("display", "inline-block");
+            pomodoroEnd = true;
+            minutes = globalPomodoroMinutes;
+            seconds = 0;
+            $("#pomodoroTimer").html(globalPomodoroMinutes + ":" + "00");
+            break;
     }
 })
 
@@ -228,10 +294,16 @@ function changeSettingsMenu(setting){
     }
 }
 
+
 startTime();
 
 var hourSys = "12";
 var optionsClicked = false;
+var pomodoroPaused = false;
+var pomodoroEnd = false;
+var globalPomodoroMinutes = 1;
+
+$("#pomodoroTimer").html(globalPomodoroMinutes + ":" + "00");
 
 $("#twentyFourHour").on("click", function(){ hourSys = "24"; console.log(hourSys);});
 $("#twelveHour").on("click", function(){ hourSys = "12"; console.log(hourSys);});

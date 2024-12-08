@@ -40,7 +40,7 @@ body{
     border: 2px solid white;
 }
 
-#pomodoroCycle_container{
+.flex_container{
     display: flex;
     gap: 20px;
 }
@@ -109,6 +109,10 @@ body{
 
 #pomodoroCheckbox{
     margin-right: 10px;
+}
+
+#pausePomodoroTimerButton, #endPomodoroTimerButton, #resumePomodoroTimerButton{
+    display: none;
 }
 
 #iconContainer{
