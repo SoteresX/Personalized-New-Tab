@@ -225,8 +225,8 @@ $("button, input").on("click", function(event){
             break;
         
         case "startPomodoroTimerButton":
-            var minutes = 0;
-            var seconds = 30;
+            var minutes = globalPomodoroMinutes;
+            var seconds = 0;
             pomodoroEnd = false;
             pomodoroPaused = false; 
             $("#startPomodoroTimerButton").css("display", "none");
@@ -240,6 +240,8 @@ $("button, input").on("click", function(event){
 
                             $("#pausePomodoroTimerButton, #resumePomodoroTimerButton, #endPomodoroTimerButton").css("display", "none");
                             $("#startPomodoroTimerButton").css("display", "inline-block");
+                            globalPomodoroMinutes = 5;
+                            pomodoroEnd = true;
                             $("#pomodoroTimer").html(globalPomodoroMinutes + ":" + "00");
                             clearInterval(pomodoroTimer);
 
@@ -281,6 +283,22 @@ $("button, input").on("click", function(event){
             seconds = 0;
             $("#pomodoroTimer").html(globalPomodoroMinutes + ":" + "00");
             break;
+        case "shortBreakButton":
+            globalPomodoroMinutes = 5;
+            pomodoroEnd = true;
+            $("#pomodoroTimer").html(globalPomodoroMinutes + ":" + "00");
+            break;
+        case "longBreakButton":
+            globalPomodoroMinutes = 15;
+            pomodoroEnd = true;
+            $("#pomodoroTimer").html(globalPomodoroMinutes + ":" + "00");
+            break;
+        case "pomodoroButton":
+            globalPomodoroMinutes = 25;
+            pomodoroEnd = true;
+            $("#pomodoroTimer").html(globalPomodoroMinutes + ":" + "00");
+            break;
+
     }
 })
 
