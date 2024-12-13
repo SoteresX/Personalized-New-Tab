@@ -115,6 +115,10 @@ body{
     display: none;
 }
 
+#pomodoroButton:hover, #shortBreakButton:hover, #longBreakButton:hover, #startPomodoroTimerButton:hover, #pausePomodoroTimerButton:hover, #endPomodoroTimerButton:hover, #resumePomodoroTimerButton:hover{
+    background-color: rgb(255,255,255, 0.3);
+}
+
 #iconContainer{
     display: flex;
     flex-direction: column;

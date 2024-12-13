@@ -249,6 +249,20 @@ $("button, input").on("click", function(event){
 
                             $("#pausePomodoroTimerButton, #resumePomodoroTimerButton, #endPomodoroTimerButton").css("display", "none");
                             $("#startPomodoroTimerButton").css("display", "inline-block");
+                            switch(pomodoroState){
+                                case "pomodoro":
+                                    pomodoroState = "shortBreak";
+                                    pomodoroButtonAnimations(pomodoroState);
+                                    break;
+                                case "shortBreak":
+                                    pomodoroState = "pomodoro";
+                                    pomodoroButtonAnimations(pomodoroState);
+                                    break;
+                                case "longBreak":
+                                    pomodoroState = "pomodoro";
+                                    pomodoroButtonAnimations(pomodoroState);
+                                    break;
+                            }
                             globalPomodoroMinutes = 5;
                             pomodoroEnd = true;
                             $("#pomodoroTimer").html(globalPomodoroMinutes + ":" + "00");
@@ -298,21 +312,45 @@ $("button, input").on("click", function(event){
         case "shortBreakButton":
             globalPomodoroMinutes = 5;
             pomodoroEnd = true;
-            $("#pomodoroTimer").html(globalPomodoroMinutes + ":" + "00");
+            pomodoroState = "shortBreak";
+            pomodoroButtonAnimations(pomodoroState)
             break;
         case "longBreakButton":
             globalPomodoroMinutes = 15;
             pomodoroEnd = true;
-            $("#pomodoroTimer").html(globalPomodoroMinutes + ":" + "00");
+            pomodoroState = "longBreak";
+            pomodoroButtonAnimations(pomodoroState)
             break;
         case "pomodoroButton":
             globalPomodoroMinutes = 25;
             pomodoroEnd = true;
-            $("#pomodoroTimer").html(globalPomodoroMinutes + ":" + "00");
+            pomodoroState = "pomodoro";
+            pomodoroButtonAnimations(pomodoroState)
             break;
 
     }
 })
+
+function pomodoroButtonAnimations(pomodoroState){
+    switch(pomodoroState){
+        case "pomodoro":
+            $("#pomodoroButton").animate({width: '120px'}, 100);
+            $("#shortBreakButton").animate({width: '100px'}, 100);
+            $("#longBreakButton").animate({width: '100px'}, 100);
+            break;
+        case "shortBreak":
+            $("#pomodoroButton").animate({width: '100px'}, 100);
+            $("#shortBreakButton").animate({width: '120px'}, 100);
+            $("#longBreakButton").animate({width: '100px'}, 100);
+            break;
+        case "longBreak":
+            $("#pomodoroButton").animate({width: '100px'}, 100);
+            $("#shortBreakButton").animate({width: '100px'}, 100);
+            $("#longBreakButton").animate({width: '120px'}, 100);
+            break;
+    }
+    $("#pomodoroTimer").html(globalPomodoroMinutes + ":" + "00");
+}
 
 function changeSettingsMenu(setting){
     if(setting == "clock"){
@@ -332,6 +370,7 @@ var optionsClicked = false;
 var pomodoroPaused = false;
 var pomodoroEnd = false;
 var globalPomodoroMinutes = 1;
+var pomodoroState = "pomodoro";
 
 $("#pomodoroTimer").html(globalPomodoroMinutes + ":" + "00");
 
