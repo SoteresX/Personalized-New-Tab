@@ -18,10 +18,11 @@ function startTime(){
         hours = date.getHours();
     }
     
-    numsToString(seconds, minutes, hours);
+    var timeVariables = numsToString(seconds, minutes, hours);
     document.getElementById("dateAndDay").innerHTML = weekday[dayOfWeek];
     document.getElementById("monthAndDay").innerHTML = months[month-1] + " " + dayNum;
     document.getElementById("dayNums").innerHTML = dayNum + "/" + month + "/" + year;
+    $("#clock").html(timeVariables[0] + timeVariables[1] + ":" + timeVariables[2] + timeVariables[3] + ":" + timeVariables[4] + timeVariables[5]);
     setTimeout(startTime, 500);
 }
 
@@ -30,37 +31,45 @@ function numsToString(seconds, minutes, hours){
     const numsInSecondsVar = seconds.toString();
 
     if( numsInSecondsVar.length > 1){
-        secNum1= numsInSecondsVar[0]
-        secNum2 = numsInSecondsVar[1];
+        var secNum1 = numsInSecondsVar[0]
+        var secNum2 = numsInSecondsVar[1];
     }
     else{
-        secNum1 = 0;
-        secNum2 = seconds;
+        var secNum1 = 0;
+        var secNum2 = seconds;
     }
 
     // Minute Converter To String
-    const numsInMinutesVar = minutes.toString();
-    if( numsInMinutesVar.length > 1){
-        minNum1= numsInMinutesVar[0]
-        minNum2 = numsInMinutesVar[1];
-    }
-    else{
-        minNum1 = 0;
-        minNum2 = minutes;
-    }
-    // Hours To String Converter
-    const numsInHoursVar = hours.toString();
-    if( numsInHoursVar.length > 1){
-        hourNum1= numsInHoursVar[0]
-        hourNum2 = numsInHoursVar[1];
-    }
-    else{
-        hourNum1 = 0;
-        hourNum2 = hours;
+    if(typeof minutes == 'undefined'){
+        return [secNum1, secNum2];
+    } else{
+        const numsInMinutesVar = minutes.toString();
+        if( numsInMinutesVar.length > 1){
+            var minNum1= numsInMinutesVar[0]
+            var minNum2 = numsInMinutesVar[1];
+        }
+        else{
+            var minNum1 = 0;
+            var minNum2 = minutes;
+        }   
     }
 
-    document.getElementById("clock").innerHTML = hourNum1 + hourNum2 + ":" + minNum1 + minNum2 + ":" + secNum1 + secNum2;
-    
+    // Hours To String Converter
+    if(typeof hours == 'undefined'){
+        return [minNum1, minNum2, secNum1, secNum2];
+    } else {
+        const numsInHoursVar = hours.toString();
+        if( numsInHoursVar.length > 1){
+            var hourNum1= numsInHoursVar[0]
+            var hourNum2 = numsInHoursVar[1];
+        }
+        else{
+            var hourNum1 = 0;
+            var hourNum2 = hours;
+        }
+
+        return [hourNum1, hourNum2, minNum1, minNum2, secNum1, secNum2];
+    }
 }
 
 function hourSystemChange(hours){
@@ -246,12 +255,15 @@ $("button, input").on("click", function(event){
                             clearInterval(pomodoroTimer);
 
                         } else if(seconds == 0){
-                            minutes -= 1;
                             seconds = 59;
-                            $("#pomodoroTimer").html(minutes + ":" + seconds);
+                            var timeVariables = numsToString(seconds);
+                            minutes -= 1;
+                            $("#pomodoroTimer").html(minutes + ":" + timeVariables[0] + timeVariables[1]);
                         } else{
+                            var timeVariables = numsToString(seconds);
+                            console.log(timeVariables, "Time Variables");
                             seconds -=1; 
-                            $("#pomodoroTimer").html(minutes + ":" + seconds);
+                            $("#pomodoroTimer").html(minutes + ":" + timeVariables[0] + timeVariables[1]);
                         }
                         
                     } 
